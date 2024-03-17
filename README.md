@@ -11,4 +11,14 @@ GoalQuest is a goals management application designed to help users organize thei
 4. User-Friendly Interface: Intuitive and easy-to-use interface for seamless goals management experience.
 5. Data Persistence: goals and their descriptions are stored persistently, ensuring data is retained across sessions.
 
+## Usage
+1. To add a goal:
+- [Set Goal Video](vid_src/set_goal.mp4)
+- 
+2. To edit a goal:
+- [Edit Goal Video](vid_src/edit_goal.mp4)
+- 
+3. To delete a goal:
+- [Delete Goal Video](vid_src/delete_goal.mp4)
+
 
