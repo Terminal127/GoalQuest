@@ -1,13 +1,10 @@
-# Project Name
-
-Brief description of the project.
-
-
+# GoalQuest
 
 ## Project Description
 GoalQuest is a goals management application designed to help users organize their goals effectively. Whether it's managing daily chores, work-related assignments, or personal projects, GoalQuest provides a convenient platform for users to keep track of their goals.
 
-##Features
+
+## Features
 Goal Management: Create, edit, and delete goals effortlessly.
 Goal Description: Attach detailed descriptions to tasks for better context and clarity.
 Status Tracking: Monitor the status of goals with options to mark goals as complete or in progress.
