@@ -27,6 +27,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
     //widgets
     private EditText mEditText;
+    private EditText mEditDesc;
     private Button mSaveButton;
 
     private DataBaseHelper myDb;
@@ -48,6 +49,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
         mEditText = view.findViewById(R.id.edittext);
+        mEditDesc = view.findViewById(R.id.editDesc);
         mSaveButton = view.findViewById(R.id.button_save);
 
         myDb = new DataBaseHelper(getActivity());
@@ -55,54 +57,74 @@ public class AddNewTask extends BottomSheetDialogFragment {
         boolean isUpdate = false;
 
         final Bundle bundle = getArguments();
-        if (bundle != null){
+        if (bundle != null) {
             isUpdate = true;
             String task = bundle.getString("task");
+            String taskDesc = bundle.getString("taskDesc");
             mEditText.setText(task);
+            mEditDesc.setText(taskDesc);
 
-            if (task.length() > 0 ){
+            if (task.length() > 0) {
                 mSaveButton.setEnabled(false);
             }
-
         }
+
         mEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().equals("")){
+                if (s.toString().equals("")) {
                     mSaveButton.setEnabled(false);
                     mSaveButton.setBackgroundColor(Color.GRAY);
-                }else{
+                } else {
                     mSaveButton.setEnabled(true);
                     mSaveButton.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) {}
         });
+
+        mEditDesc.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Implement similar logic as done for mEditText
+                if (s.toString().equals("")) {
+                    mSaveButton.setEnabled(false);
+                    mSaveButton.setBackgroundColor(Color.GRAY);
+                } else {
+                    mSaveButton.setEnabled(true);
+                    mSaveButton.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
         final boolean finalIsUpdate = isUpdate;
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = mEditText.getText().toString();
+                String desc = mEditDesc.getText().toString();
 
-                if (finalIsUpdate){
-                    myDb.updateTask(bundle.getInt("id") , text);
-                }else{
+                if (finalIsUpdate) {
+                    myDb.updateTask(bundle.getInt("id"), text, desc);
+                } else {
                     ToDoModel item = new ToDoModel();
                     item.setTask(text);
+                    item.setDesc(desc);
                     item.setStatus(0);
                     myDb.insertTask(item);
                 }
                 dismiss();
-
             }
         });
     }
@@ -111,8 +133,10 @@ public class AddNewTask extends BottomSheetDialogFragment {
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
         Activity activity = getActivity();
-        if (activity instanceof OnDialogCloseListner){
-            ((OnDialogCloseListner)activity).onDialogClose(dialog);
+        if (activity instanceof OnDialogCloseListner) {
+            ((OnDialogCloseListner) activity).onDialogClose(dialog);
         }
     }
 }
+
+

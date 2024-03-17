@@ -10,6 +10,14 @@
         android:paddingStart="7dp"
         android:hint="New Goal"
         android:paddingEnd="7dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittext"
+        android:id="@+id/editDesc"
+        android:paddingStart="7dp"
+        android:hint="description"
+        android:paddingEnd="7dp"/>
 
     <Button
         android:layout_width="wrap_content"

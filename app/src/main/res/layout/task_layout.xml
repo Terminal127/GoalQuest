@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="8dp"
     app:cardElevation="5dp"
@@ -10,18 +10,31 @@
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:scrollbars="vertical">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
+        android:id="@+id/relLayout"
         android:layout_height="wrap_content"
         android:padding="5dp">
 
         <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/mcheckbox"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            app:buttonTint="@color/design_default_color_secondary_variant"
-            android:id="@+id/mcheckbox"
+            android:paddingStart="8dp"
             android:text="This is text 1"
-            android:paddingStart="8dp"/>
+            app:buttonTint="@color/design_default_color_secondary_variant" />
+
+        <!-- TextView to display task description -->
+        <TextView
+            android:id="@+id/taskDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mcheckbox"
+            android:text="description"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

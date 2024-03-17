@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +44,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final ToDoModel item = mList.get(position);
         holder.mCheckBox.setText(item.getTask());
+        holder.mDescriptionTextView.setText(item.getDesc());
         holder.mCheckBox.setChecked(toBoolean(item.getStatus()));
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -74,30 +77,34 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         notifyItemRemoved(position);
     }
 
-    public void editItem(int position){
+    public void editItem(int position) {
         ToDoModel item = mList.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("id" , item.getId());
-        bundle.putString("task" , item.getTask());
+        bundle.putInt("id", item.getId());
+        bundle.putString("task", item.getTask());
+        bundle.putString("description", item.getDesc()); // Include task description in the bundle
 
         AddNewTask task = new AddNewTask();
         task.setArguments(bundle);
-        task.show(activity.getSupportFragmentManager() , task.getTag());
-
-
+        task.show(activity.getSupportFragmentManager(), task.getTag());
     }
+
 
     @Override
     public int getItemCount() {
         return mList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        CheckBox mCheckBox;
-        public MyViewHolder(@NonNull View itemView) {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public CheckBox mCheckBox;
+        public TextView mDescriptionTextView; // Add a TextView for displaying task description
+
+        public MyViewHolder(View itemView) {
             super(itemView);
             mCheckBox = itemView.findViewById(R.id.mcheckbox);
+            mDescriptionTextView = itemView.findViewById(R.id.taskDescription); // Initialize description TextView
         }
     }
+
 }

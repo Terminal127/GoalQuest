@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
@@ -28,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     private DataBaseHelper myDB;
     private List<ToDoModel> mList;
     private ToDoAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         mList = myDB.getAllTasks();
         Collections.reverse(mList);
         adapter.setTasks(mList);
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
