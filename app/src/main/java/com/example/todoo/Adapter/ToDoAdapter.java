@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.example.todoo.MainActivity;
 import com.example.todoo.Model.ToDoModel;
 import com.example.todoo.R;
 import com.example.todoo.Utils.DataBaseHelper;
+import com.example.todoo.Adapter.ToDoAdapter;
 
 import java.util.List;
 
@@ -46,11 +48,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         holder.mCheckBox.setText(item.getTask());
         holder.mDescriptionTextView.setText(item.getDesc());
         holder.mCheckBox.setChecked(toBoolean(item.getStatus()));
+
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    myDB.updateStatus(item.getId() , 1);
+                    deletTask(position);
+                    Toast.makeText(activity, "Congratulations on completing a task", Toast.LENGTH_SHORT).show();
                 }else
                     myDB.updateStatus(item.getId() , 0);
             }
