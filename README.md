@@ -13,12 +13,18 @@ GoalQuest is a goals management application designed to help users organize thei
 
 ## Usage
 1. To add a goal:
+
+
 ![Set Goal](vid_src/set_goal.gif)
-- 
+ 
 2. To edit a goal:
+
+   
 ![Edit Goal](vid_src/edit_goal.gif)
-- 
+
 3. To delete a goal:
+
+   
 ![Delete Goal](vid_src/delete_goal.gif)
 
 
